@@ -1,1 +1,941 @@
-hello world
+
+<p><img src="cid:Image_0.jpg" /></p>
+
+
+<p>CS353 GROUP 03</p>
+<p>Social Betting Platform</p>
+<p>“Tekmactanyattik”</p>
+
+<p>Design Report</p>
+
+<p>Group Members</p>
+
+<p>Elif Kasapoğlu		21601295</p>
+<p>İrem Kırmacı			21501389</p>
+<p> Ömer Faruk Kürklü	21703424</p>
+<p>Umur Göğebakan		21702705</p>
+<p>Table of Contents</p>
+<p><b>Revisions</b><b>	</b><b>4</b></p><p><b>Revised E/R Diagram</b><b>	</b><b>5</b></p><p>Domain List	6</p><p>Table Schemas	7</p><p>Person Table	7</p><p>Phone Table	7</p><p>User Table	8</p><p>Admin Table	8</p><p>Editor Table	8</p><p>Comment Table	9</p><p>BetSlip Table	9</p><p>Competition Table	9</p><p>Bet Table	10</p><p>F1Tournament Table	10</p><p>Match Table	10</p><p>SportotoMatch Table	11</p><p>Side Table	11</p><p>Team Table	11</p><p>TennisPlayer Table	12</p><p>AddFriend Table	12</p><p>Follow Table	13</p><p>LikeBetSlip Table	13</p><p>PlayBetSlip Table	14</p><p>LikeComment Table	14</p><p>CommentOnComment Table	14</p><p>MakeComment Table	15</p><p>Prepare Table	15</p><p>MatchComment Table	16</p><p>MatchHasSides Table	16</p><p>SportotoBets Table	17</p><p>MakeBet Table	17</p><p>AdminManagesBet Table	18</p><p>AdminManagesSportotoMatch Table	18</p><p><b>User Interface Design and Corresponding SQL Statements</b><b>	</b><b>20</b></p><p>Create Admin Account	20</p><p>Sign up	20</p><p>Admin	20</p><p>Create Editor Account	21</p><p>Editor	21</p><p>Create User Account	22</p><p>Normal user	22</p><p>User Login	23</p><p>Login	23</p><p>Admin	24</p><p>Editor	24</p><p>Normal user	24</p><p>List Matches and Bets	25</p><p>List Competitions	26</p><p>List all matches with filter	26</p><p>Team Name Filter	26</p><p>League Filter	26</p><p>Sport Type Filter	26</p><p>Team Sport	26</p><p>Tennis	26</p><p>F1Tournament	26</p><p>Date Filter	26</p><p>Bet Type Filter	27</p><p>Add bet to betslip	27</p><p>Editor sharing betslips	27</p><p>SporToto Coupon	28</p><p>List Sportoto Matches of the Week	28</p><p>SporToto Coupon Results	29</p><p>List Sportoto Results Weekly	29</p><p>Show Coupons	30</p><p>Show Coupons	31</p><p>Show Account	32</p><p>Add credit to wallet	32</p><p>Pay credit from wallet	32</p><p>List Followers	33</p><p>List Following	34</p><p>List User’s Coupons	35</p><p>Follow Others	36</p><p>Add friend	36</p><p>Coupon Details	37</p><p>Make Comment	38</p><p>Make comment on bet slip	38</p><p>Make comment on comment	38</p><p>Like on betslip	38</p><p>Like on comment	39</p><p>Admin Manage	39</p><p>Admin edit match	40</p><p>Enter match	40</p><p>Enter  F1 Tournament	40</p><p>Admin add-delete bets	40</p><p>Admin Manages Sportoto Match	41</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Revisions</h1>
+<ol><li>Explicit expression of “Total” is removed from generalizations.</li>
+<li>Odd and MBN columns are removed from Bet entity’s primary key.</li>
+<li>Ternary relation “make bet” is changed to normal relation between “Bet Slip” and “Bet”. Connection between make bet relation and User is removed.</li>
+<li>Total participation in like comment relation is removed.</li>
+<li>Cardinality of like comment relation is changed to many-to-many.</li>
+<li>Aggregation is removed.</li>
+<li>Total participation between Comment and match comment is changed to partial participation.</li>
+<li>Like relation is changed to many-to-many and total participation is changed to partial.</li>
+<li>Make comment relation is changed to relate with Bet Slip entity, after the removal of aggregation.</li>
+<li>Total odd and bet number columns are removed from Bet Slip entity.</li>
+<li>Owner and friend expressions are added to add friend relation to handle recursive relation.</li>
+<li>Sub expression is added to comment on comment relation to handle recursive relation.</li>
+<li>Attribute time in comment, manage and match are changed as comment_time, manage_time, and match_time.</li>
+<li>Attribute score in Match is changed as away_score and home_score.</li>
+<li>Attribute date in Competition, Comment, Bet Slip and manage are changed as competititon_date, comment_date, creation_date,manage_date.</li>
+<li>Attribute name in F1-Tournament and Team are changed as tournament_name and team_name.</li>
+<li>Attribute type in Team and Bet are changed as sport_type and bet_type.</li>
+<li>Relation share between User and Bet Slip is changed as play, and attribute isShared added to the Bet Slip.</li></ol>
+<h1></h1>
+<h1>Revised E/R Diagram</h1>
+
+
+<p><img src="cid:Image_1.png" /></p>
+
+<h2></h2>
+<h2>Domain List</h2>
+
+<ul class="small"><li>Domain of TC_NO is the set of character strings of length less than 11</li></ul>
+<li>Domain of first_name is the set of character strings of length less than 128</li>
+<li>Domain of last_name is the set of character strings of length less than 128</li>
+<li>Domain of password is the set of character strings of length less than 32</li>
+<li>Domain of email is the set of character strings of length less than 575</li>
+<li>Domain of date_of_birth is the set of DATE</li>
+<li>Domain of phone_number is the set of 12 digit integers</li>
+<li>Domain of nickname is the set of character strings of length less than 20</li>
+<li>Domain of wallet is the set of 12 digit integers</li>
+<li>Domain of comnment_id is the set of 12 digit integers</li>
+<li>Domain of content is the set of character strings of length less than 1024</li>
+<li>Domain of slip_id is the set of 12 digit integers</li>
+<li>Domain of comment_time is the set of 4 digit integers (hh:ss)</li>
+<li>Domain of manage_time is the set of 4 digit integers (hh:ss)</li>
+<li>Domain of match_time is the set of 4 digit integers (hh:ss)</li>
+<li>Domain of money is the set of 12 digit integers</li>
+<li>Domain of creation_date is the set of DATE</li>
+<li>Domain of competition_id is the set of 12 digit integers</li>
+<li>Domain of MBN is the set of small integers less than 15 </li>
+<li>Domain of odd is the set of all floating-point numbers greater than 0 and less than 50</li>
+<li>Domain of tournament_name is the set of character strings of length less than 128</li>
+<li>Domain of year is the set of 4 digit integers</li>
+<li>Domain of winner_driver is the is set of character strings of length less than 256</li>
+<li>Domain of winner_team is the set of character strings of length less than 256</li>
+<li>Domain of league_name is the set of character strings of length less than 256</li>
+<li>Domain of away_score is the set of integers less than 200</li>
+<li>Domain of home_score is the set of integers less than 200</li>
+<li>Domain of league_rank is the set of small integers less than 200</li>
+<li>Domain of creation_date is the set of DATE </li>
+<li>Domain of comment_date is the set of DATE </li>
+<li>Domain of creation_date is the set of DATE </li>
+<li>Domain of manage_date is the set of DATE</li>
+<li>Domain of sport_type is the set of character strings of length less than 128</li>
+<li>Domain of bet_type is the set of character strings of length less than 128</li>
+<li>Domain of side_id is the set of 12 digit integers</li>
+<li>Domain of tournament_name is the set of character strings of length less than 128</li>
+<li>Domain of team_name is the set of character strings of length less than 128</li>
+<li>Domain of date_of_establishment is the set of DATE</li>
+<li>Domain of coach is the set of character strings of length less than 256</li>
+<li>Domain of sport_type is the set of character strings of length less than 256</li>
+<li>Domain of stadium is the set of character strings of length less than 256</li>
+<li>Domain of nationality is the set of character strings of length less than 256</li>
+<li>Domain of gender is the set of character strings of length less than 256</li>
+<li>Domain of is_shared is the set of character strings of length less than 1</li>
+<li>Domain of fold is the set of integers less than 1000</li>
+<li>Domain of valid_bet_type is the set of character strıngs of length less than 128</li>
+<li>Domain of valid_MBN is the set of small integers less than 15</li>
+<li>Domain of vaid_odd is the set of all floating-point numbers greater than 0 and less than 50</li>
+<li>Domain of success is the set of character strings of length less than 1</li></ul>
+<h2>Table Schemas</h2>
+<h3>Person Table</h3>
+<p>Person(<u>TC_NO</u>, first_name, last_name, password, email, date_of_birth)</p>
+<p>		Candidate keys: TC_NO, email</p>
+<p>		Primary Key : TC_NO</p>
+
+<p><b>CREATE</b> <b>TABLE</b> Person  </p>
+<p>(  </p>
+<p>TC_NO              	VARCHAR2(11)      	<b>NOT NULL</b>,</p>
+<p>first_name		VARCHAR2(128)     	<b>NOT NULL</b>,  </p>
+<p>last_name          	VARCHAR2(128)    	<b>NOT NULL</b>,  </p>
+<p>passwords         	VARCHAR2(32)      	<b>NOT NULL</b>,  </p>
+<p>email                 	VARCHAR2(575)     	<b>UNIQUE</b>,  </p>
+<p>date_of_birth       	DATE			<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(TC_NO)</p>
+<p>);</p>
+<h3>Phone Table</h3>
+<p>Phone(<u>TC_NO</u>, <u>phone_number</u>)</p>
+<p>	Candidate keys: {TC_NO, phone_number}</p>
+<p>	Primary Key :  {TC_NO, phone_number}</p>
+
+<p><b>CREATE</b> <b>TABLE</b> Phone(</p>
+<p>TC_NO         		VARCHAR2(11),</p>
+<p>phone_number     	VARCHAR2(32)   	<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(TC_NO, phone_number),</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Person(TC_NO) ON DELETE CASCADE</p>
+<p>);</p>
+
+<h3>User Table</h3>
+<p>User(<u>TC_NO</u>, nickname, wallet)</p>
+<p>	Candidate keys: TC_NO, nickname</p>
+<p>	Primary Key : TC_NO</p>
+<ul class="small"><li><u>TC_NO</u> references Person</li></ul></ul>
+
+<p><b>CREATE</b><b> </b><b>TABLE</b> Users  </p>
+<p>(  </p>
+<p>TC_NO    	VARCHAR2(11),  </p>
+<p>nickname 	VARCHAR2(128) 	<b>NOT NULL</b>,</p>
+<p>wallet 		INTEGER 		<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(TC_NO),</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Person(TC_NO) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>Admin Table</h3>
+<p>Admin(<u>TC_NO</u>)</p>
+<p>	Candidate keys: TC_NO</p>
+<p>	Primary Key : TC_NO</p>
+<ul class="small"><li><u>TC_NO</u> references Person </li></ul></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> Admin</p>
+<p>(</p>
+<p>TC_NO 	VARCHAR2(11),</p>
+<p>PRIMARY KEY(TC_NO),</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Person(TC_NO) ON DELETE CASCADE    </p>
+<p>);</p>
+<h3>Editor Table</h3>
+<p>Editor(<u>TC_NO</u>)</p>
+<p>Candidate keys: TC_NO</p>
+<p>Primary Key : TC_NO</p>
+<ul class="small"><li><u>TC_NO</u> references Person</li></ul></ul>
+<p><b>CREATE</b> <b>TABLE</b> Editor</p>
+<p>(</p>
+<p>TC_NO 	VARCHAR2(11),</p>
+<p>PRIMARY KEY(TC_NO),</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Person(TC_NO)</p>
+<p>);</p>
+<h3>Comment Table</h3>
+<p>Comment(<u>comnment_id</u>, content, comment_date, comment_time)</p>
+<p>	Candidate keys: comment_id</p>
+<p>	Primary Key : comment_id</p>
+
+<p><b>CREATE</b> <b>TABLE</b> Comments</p>
+<p>(</p>
+<p>comment_id		INTEGER 		<b>NOT NULL</b>,</p>
+<p>content 		VARCHAR2(1024)	<b>NOT NULL</b>,</p>
+<p>comment_date 	DATE			<b>NOT NULL</b>,</p>
+<p>comment_time 	INTEGER 		<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(comment_id)</p>
+<p>);</p>
+<h3>BetSlip Table</h3>
+<p>BetSlip(<u>slip_id</u>, money, creation_date, isShared)</p>
+<p>	Candidate keys: slip_id</p>
+<p>	Primary Key : slip_id</p>
+
+<p><b>CREATE</b> <b>TABLE</b> BetSlip</p>
+<p>(</p>
+<p>slip_id 			INTEGER,</p>
+<p>money 		INTEGER		<b>NOT NULL</b>,</p>
+<p>creation_date 		DATE 			<b>NOT NULL</b>,</p>
+<p>isShared		CHAR(1),</p>
+<p>success 		CHAR(1),</p>
+<p>PRIMARY KEY(slip_id)</p>
+<p>);</p>
+<h3>Competition Table</h3>
+<p>Competition(<u>competition_id</u>, competition_date)</p>
+<p>	Candidate keys: competition_id</p>
+<p>	Primary Key : competition_id</p>
+<p><b>CREATE</b> <b>TABLE</b> Competition</p>
+<p>(</p>
+<p>competition_id 	INTEGER,</p>
+<p>competition_date 	DATE 			<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(competition_id )</p>
+<p>ON DELETE CASCADE</p>
+<p>);</p>
+<h3>Bet Table </h3>
+<p>Bet(<u>competition_id</u>, <u>bet_type</u>, MBN, odd)</p>
+<p>	Candidate keys: {competetion_id, bet_type} </p>
+<p>Primary Key : {competetion_id, bet_type} </p>
+<ul class="small"><li><u>competition_id</u> references Competition</li></ul></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> Bet</p>
+<p>(</p>
+<p>competition_id		INTEGER,</p>
+<p>bet_type 		VARCHAR2(128),</p>
+<p>MBN 			INTEGER		<b>NOT NULL</b>,</p>
+<p>odd 			FLOAT			<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(competition_id, bet_type),</p>
+<p>FOREIGN KEY(competition_id) REFERENCES Competition(competition_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>F1Tournament Table</h3>
+<p>F1Tournament(<u>competition_id</u>, tournament_name, year,winner_driver, winner_team)</p>
+<p>	Candidate keys: competetion_id</p>
+<p>	Primary Key : competition_id</p>
+<ul class="small"><li><u>competition_id</u> references Competition</li></ul></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> F1Tournament</p>
+<p>(</p>
+<p>competition_id 	INTEGER,</p>
+<p>tournament_name	VARCHAR2(128)	<b>NOT NULL</b>,</p>
+<p>winner_driver 		VARCHAR2(256)	<b>NOT NULL</b>,</p>
+<p>winner_team 		VARCHAR2(256) 	<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(competition_id),</p>
+<p>FOREIGN KEY(competition_id) REFERENCES Competition(competition_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>Match Table</h3>
+<p>Match(<u>competition_id</u>, match_time, home_score, away_score,league_name)</p>
+<p>	Candidate keys: competetion_id</p>
+<p>	Primary Key : competition_id</p>
+<ul class="small"><li><u>competition_id</u> references Competition</li></ul></ul>
+
+
+
+<p><b>CREATE</b> <b>TABLE</b> Match </p>
+<p>(</p>
+<p>competition_id 	INTEGER,</p>
+<p>match_time 		INTEGER        	<b>NOT NULL</b>,</p>
+<p>home_score 		INTEGER         	<b>NOT NULL</b>,</p>
+<p>away_score 		INTEGER         	<b>NOT NULL</b>,</p>
+<p>league_name 		VARCHAR2(256)  	<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(competition_id),</p>
+<p>FOREIGN KEY(competition_id) REFERENCES Competition(competition_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>SportotoMatch Table </h3>
+<p>SportotoMatch(<u>competition_id</u>)</p>
+<p>	Candidate keys: competetion_id</p>
+<p>	Primary Key : competition_id</p>
+<ul class="small"><li><u>competition_id</u> references Match</li></ul></ul>
+<p><b>CREATE</b> <b>TABLE</b> SportotoMatch</p>
+<p>(</p>
+<p>competition_id 	INTEGER,</p>
+<p>PRIMARY KEY(competition_id),</p>
+<p>FOREIGN KEY(competition_id) REFERENCES Match(competition_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>Side Table</h3>
+<p>Side(<u>side_id</u>, league_rank)                          </p>
+<p>	Candidate keys: side_id</p>
+<p>	Primary Key : side_id</p>
+
+<p><b>CREATE</b> <b>TABLE</b> Side </p>
+<p>(</p>
+<p>side_id 		INTEGER        	<b>NOT NULL</b>,</p>
+<p>leaguge_rank 		INTEGER    		<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(side_id)</p>
+<p>);</p>
+<h3>Team Table</h3>
+<p>Team(<u>side_id</u>, team_name, date_of_establishment, coach, sport_type, stadium)</p>
+<p>	Candidate keys:  side_id</p>
+<p>	Primary Key : side_id</p>
+<li><u>side_id</u> references Side</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> Team</p>
+<p>(</p>
+<p>side_id 		INTEGER,</p>
+<p>team_name 		VARCHAR2(128)	<b>NOT NULL</b>,</p>
+<p>date_of_establishment DATE			<b>NOT NULL</b>,</p>
+<p>coach 			VARCHAR2(256)	<b>NOT NULL</b>,</p>
+<p>sport_type 		VARCHAR2(256)	<b>NOT NULL</b>,</p>
+<p>stadium 		VARCHAR2(256)	<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(side_id),</p>
+<p>FOREIGN KEY(side_id) REFERENCES Side(side_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>TennisPlayer Table</h3>
+<p>TennisPlayer(<u>side_id</u>, first_name, last_name, date_of_birth, nationality, gender)</p>
+<p>Candidate keys: {side_id, first_name, last_name}</p>
+<p>Primary Key : {side_id, first_name, last_name}</p>
+<li><u>side_id</u> references Side</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> TennisPlayer</p>
+<p>(</p>
+<p>side_id 		INTEGER,</p>
+<p>first_name 		VARCHAR2(128),</p>
+<p>last_name 		VARCHAR2(128),</p>
+<p>date_of_birth 		DATE			<b>NOT NULL</b>,</p>
+<p>nationality 		VARCHAR2(256)	<b>NOT NULL</b>,</p>
+<p>gender 		VARCHAR2(256)	<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(side_id, first_name, last_name),</p>
+<p>FOREIGN KEY(side_id) REFERENCES Side(side_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>AddFriend Table</h3>
+<p>AddFriend(<u>owner_TC_NO</u>, <u>friend_TC_NO</u>)</p>
+<p>	Candidate keys: {owner_TC_NO, friend_TC_NO}</p>
+<p>	Primary Key : {owner_TC_NO, friend_TC_NO}</p>
+<ul class="small"><li><u>owner_TC_NO</u> references Users</li></ul>
+<li><u>friend_TC_NO </u>references Users</li></ul>
+
+
+
+
+
+
+<p><b>CREATE</b> <b>TABLE</b> AddFriend</p>
+<p>(</p>
+<p>owner_TC_NO 	VARCHAR2(11), </p>
+<p>friend_TC_NO 	VARCHAR2(11),</p>
+<p>PRIMARY KEY(owner_TC_NO, friend_TC_NO),</p>
+<p>FOREIGN KEY (owner_TC_NO) REFERENCES Users(TC_NO) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (friend_TC_NO) REFERENCES Users(TC_NO) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>Follow Table</h3>
+<p>Follow(<u>user_TC_NO</u>, <u>editor_TC_NO</u>)
+	Candidate keys: {user_TC_NO, editor_TC_NO}</p>
+<p>	Primary Key : {user_TC_NO, editor_TC_NO}</p>
+<li><u>user_TC_NO</u> references Users</li>
+<li><u>editor_TC_NO</u> references Editor</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> Follow</p>
+<p>(</p>
+<p>user_TC_NO		VARCHAR2(11), </p>
+<p>editor_TC_NO		VARCHAR2(11), </p>
+<p>PRIMARY KEY(user_TC_NO, editor_TC_NO),</p>
+<p>FOREIGN KEY (user_TC_NO) REFERENCES Users(TC_NO) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (editor_TC_NO) REFERENCES Editor(TC_NO) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>LikeBetSlip Table</h3>
+<p>LikeBetSlip(<u>user_TC_NO</u>, <u>slip_id</u>)
+	Candidate keys: {user_TC_NO, slip_id}</p>
+<p>	Primary Key: {user_TC_NO, slip_id}</p>
+<ul class="small"><li><u>user_TC_NO</u> references Users</li></ul>
+<li><u>slip_id</u> references Bet Slip</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> LikeBetSlip</p>
+<p>(</p>
+<p>user_TC_NO		VARCHAR2(11), </p>
+<p>slip_id   		INTEGER,</p>
+<p>PRIMARY KEY(user_TC_NO, slip_id ),</p>
+<p>FOREIGN KEY (user_TC_NO) REFERENCES Users(TC_NO) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (slip_id) REFERENCES BetSlip(slip_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>PlayBetSlip Table</h3>
+<p>PlayBetSlip(<u>slip_id, TC_NO</u>)</p>
+<p>Candidate keys: {slip_id, TC_NO}</p>
+<p>	Primary Key: {slip_id, TC_NO}</p>
+<li><u>TC_NO</u> references Users</li>
+<li><u>slip_id</u> references Bet Slip</li></ul>
+<p>	</p>
+<p><b>CREATE</b> <b>TABLE</b> PlayBetSlip</p>
+<p>(</p>
+<p>slip_id 		INTEGER,</p>
+<p>TC_NO         	VARCHAR2(11),</p>
+<p>PRIMARY KEY(slip_id, TC_NO),</p>
+<p>FOREIGN KEY (slip_id) REFERENCES BetSlip(slip_id) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Users(TC_NO) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>LikeComment Table</h3>
+<p>LikeComment(<u>comment_id</u>, <u>TC_NO</u>)
+	Candidate keys: {comment_id, TC_NO}</p>
+<p>	Primary Key: {comment_id, TC_NO}</p>
+<ul class="small"><li><u>comment_id</u> references Comment</li></ul>
+<li><u>TC_NO</u> references Users</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> LikeComment</p>
+<p>(</p>
+<p>comment_id 	INTEGER,</p>
+<p>TC_NO        	VARCHAR2(11),</p>
+<p>PRIMARY KEY(comment_id, TC_NO),</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Users(TC_NO) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (comment_id) REFERENCES Comments(comment_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>CommentOnComment Table</h3>
+<p>CommentOnComment(<u>TC_NO</u>, <u>sub_comment_id</u>, <u>owner_comment_id</u>)
+	Candidate keys: {TC_NO, sub_comment_id, owner_comment_id}</p>
+<p>	Primary Key : {TC_NO, sub_comment_id, owner_comment_id}</p>
+<ul class="small"><li><u>TC_NO</u> references Users</li></ul>
+<li><u>Sub_comment_id</u> references Comment</li>
+<li><u>Owner_comment_id</u> references Comment</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> CommentOnComment</p>
+<p>(</p>
+<p>TC_NO        		VARCHAR2(11), </p>
+<p>sub_comment_id 	INTEGER,</p>
+<p>owner_comment_id 	INTEGER,</p>
+<p>PRIMARY KEY(TC_NO, sub_comment_id, owner_comment_id ),</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Users(TC_NO) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (sub_comment_id) REFERENCES Comments(comment_id) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (owner_comment_id) REFERENCES Comments(comment_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>MakeComment Table</h3>
+<p>MakeComment(<u>TC_NO</u>, <u>slip_id</u>, <u>comment_id</u>)
+	Candidate keys: {TC_NO, comment_id, slip_id}</p>
+<p>Primary Key: {TC_NO, comment_id, slip_id}</p>
+<li><u>TC_NO</u> references Users</li>
+<li><u>slip_id</u> references BetSlip</li>
+<li><u>comment_id</u> references Comment</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> MakeComment</p>
+<p>(</p>
+<p>TC_NO        		VARCHAR2(11),</p>
+<p>slip_id 			INTEGER,</p>
+<p>comment_id 		INTEGER,</p>
+<p>PRIMARY KEY(TC_NO, slip_id,comment_id ),</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Users(TC_NO) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (slip_id) REFERENCES BetSlip(slip_id) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (comment_id) REFERENCES Comments(comment_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>Prepare Table</h3>
+<p>Prepare(<u>TC_NO</u>, <u>slip_id</u>)
+	Candidate keys: {TC_NO, slip_id}</p>
+<p>	Primary Key : {TC_NO, slip_id}</p>
+<li><u>TC_NO</u> references Editor</li>
+<li><u>slip_id</u> references BetSlip</li></ul>
+
+
+
+
+
+<p><b>CREATE</b> <b>TABLE</b> Prepare </p>
+<p>(</p>
+<p>TC_NO        		VARCHAR2(11),</p>
+<p>slip_id         		INTEGER,</p>
+<p>PRIMARY KEY(TC_NO, slip_id),</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Editor(TC_NO) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (slip_id) REFERENCES BetSlip(slip_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>MatchComment Table</h3>
+<p>MatchComment(<u>TC_NO</u>, <u>competition_id</u>, <u>comment_id</u>)
+	Candidate keys: {TC_NO, competetion_id, comment_id}</p>
+<p>Primary Key: {TC_NO, competetion_id, comment_id}</p>
+<li><u>TC_NO</u> references Users</li>
+<li><u>competition_id</u> references Match</li>
+<li><u>comment_id</u> references Comment</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> MatchComment</p>
+<p>(</p>
+<p>TC_NO     		VARCHAR2(11),</p>
+<p>competition_id 	INTEGER,</p>
+<p>comment_id 		INTEGER,</p>
+<p>PRIMARY KEY(TC_NO, competition_id, comment_id),</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Users(TC_NO) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY(competition_id) REFERENCES Match(competition_id) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY(comment_id) REFERENCES Comment(comment_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>MatchHasSides Table</h3>
+<p>MatchHasSides(<u>competition_id</u>, <u>home_side_id</u>, <u>away_side_id</u>)
+	Candidate keys: {competetion_id, home_side_id, away_side_id}</p>
+<p>	Primary Key: {competetion_id, home_side_id, away_side_id}</p>
+<li><u>competition_id</u> references Match</li>
+<li><u>home_side_id</u> references Side</li>
+<li><u>away_side_id</u> references Side</li></ul>
+
+
+
+
+
+
+
+<p><b>CREATE</b> <b>TABLE</b> MatchHasSides</p>
+<p>(</p>
+<p>competition_id 	INTEGER,</p>
+<p>home_side_id 		INTEGER,</p>
+<p>away_side_id 		INTEGER,</p>
+<p>PRIMARY KEY (competition_id,home_side_id, away_side_id ),</p>
+<p>FOREIGN KEY (competition_id) REFERENCES Match(competition_id) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (home_side_id) REFERENCES Side(side_id) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (away_side_id) REFERENCES Side(side_id) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>SportotoBets Table</h3>
+<p>SportotoBets(<u>competition_id</u>, <u>TC_NO</u>, content, fold, match_time)
+	Candidate keys: {competetion_id, TC_NO}</p>
+<p>	Primary Key: {competetion_id, TC_NO}</p>
+<li><u>competition_id</u> references SportotoMatch</li>
+<li><u>TC_NO</u> references Users</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> SportotoBets</p>
+<p>(</p>
+<p>competition_id 	INTEGER,</p>
+<p>TC_NO        		VARCHAR2(11),</p>
+<p>content 		VARCHAR2(1024),</p>
+<p>fold 			INTEGER,</p>
+<p>match_time 		INTEGER,</p>
+<p>PRIMARY KEY (competition_id, TC_NO),</p>
+<p>FOREIGN KEY(competition_id) REFERENCES SportotoMatch(competition_id) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Users(TC_NO) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>MakeBet Table</h3>
+<p>MakeBet(<u>slip_id</u>, <u>competition_id</u>, <u>bet_type</u>, valid_MBN, valid_odd)
+	Candidate keys: {slip_id, competetion_id, valid_bet_type}</p>
+<p>	Primary Key: {slip_id, competetion_id, valid_bet_type}</p>
+<li><u>slip_id</u> references BetSlip</li></ul>
+
+
+
+
+
+
+<p><b>CREATE</b> <b>TABLE</b> MakeBet</p>
+<p>(</p>
+<p>slip_id 			INTEGER,</p>
+<p>competition_id 	INTEGER,</p>
+<p>valid_bet_type 	VARCHAR2(128),</p>
+<p>valid_MBN 		INTEGER		<b>NOT NULL</b>,</p>
+<p>valid_odd 		FLOAT			<b>NOT NULL</b>,</p>
+<p>PRIMARY KEY(slip_id, competition_id, bet_type),</p>
+<p>FOREIGN KEY (slip_id) REFERENCES BetSlip(slip_id) ON DELETE CASCADE,</p>
+<p>);</p>
+<h3>AdminManagesBet Table</h3>
+<p>AdminManagesBet(<u>TC_NO</u>, <u>competition_id</u>, <u>bet_type</u>, <u>manage_date</u>, <u>manage_time</u>)
+	Candidate keys: {TC_NO, competetion_id, bet_type, manage_date, manage_time}</p>
+<p>Primary Key : {TC_NO, competetion_id, bet_type, manage_date, manage_time}</p>
+<li><u>TC_NO</u> references Admin</li>
+<li><u>competition_id, bet_type</u> references Bet</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> AdminManagesBet</p>
+<p>(</p>
+<p>TC_NO         		VARCHAR2(11),</p>
+<p>competition_id 	INTEGER,</p>
+<p>bet_type 		VARCHAR2(128),</p>
+<p>manage_date 		DATE,</p>
+<p>manage_time 		INTEGER,</p>
+<p>PRIMARY KEY(TC_NO,competition_id ,bet_type, manage_date, manage_time),</p>
+<p>FOREIGN KEY (TC_NO) REFERENCES Admin(TC_NO) ON DELETE CASCADE,</p>
+<p>FOREIGN KEY(competition_id, bet_type) REFERENCES Bet(competition_id, bet_type) ON DELETE CASCADE</p>
+<p>);</p>
+<h3>AdminManagesSportotoMatch Table</h3>
+<p>AdminManagesSportotoMatch(<u>TC_NO</u>, <u>competition_id</u>, <u>manage_date</u>, <u>manage_time</u>)
+	Candidate keys: {TC_NO, competetion_id, manage_date, manage_time}</p>
+<p>	Primary Key: {TC_NO, competetion_id, manage_date, manage_time}</p>
+<li><u>TC_NO</u> references Admin</li>
+<li><u>competition_id</u> references SportotoMatch</li></ul>
+
+<p><b>CREATE</b> <b>TABLE</b> AdminManagesSportotoMatch</p>
+<p>(</p>
+<p>TC_NO 		VARCHAR2(11),</p>
+<p>competetion_id 	INTEGER,</p>
+<p>manage_date 		DATE,</p>
+<p>manage_time 		INTEGER,</p>
+<p>PRIMARY KEY(TC_NO, competition_id,manage_date,manage_time),</p>
+<p>FOREIGN KEY(competetion_id) REFERENCES SportotoMatch(competetion_id) ON DELETE CASCADE, </p>
+<p>FOREIGN KEY(TC_NO) REFERENCES Admin(TC_NO) ON DELETE CASCADE</p>
+<p>);</p>
+<h1></h1>
+<h1>User Interface Design and Corresponding SQL Statements</h1>
+<h2>Create Admin Account</h2>
+<p><img src="cid:Image_2.png" /></p>
+<p>			   Figure 1: Create Admin Account Screen</p>
+<p>                                            </p>
+<h3>Sign up</h3>
+<h4>Admin</h4>
+<p>INSERT INTO Person</p>
+<p>VALUE</p>
+<p>(@TC_NO, @first_name, @last_name, @password, @email, @date_of_birth)</p>
+<p>INSERT INTO Admin</p>
+<p>VALUE</p>
+<p>(@TC_NO)</p>
+<h2>Create Editor Account</h2>
+
+<p><img src="cid:Image_3.png" /></p>
+<p>				Figure 2: Create Editor Account Screen</p>
+<h4>Editor</h4>
+<p>INSERT INTO Person</p>
+<p>VALUE</p>
+<p>(@TC_NO, @first_name, @last_name, @password, @email, @date_of_birth)</p>
+
+<p>INSERT INTO Editor</p>
+<p>VALUE</p>
+<p>(@TC_NO)</p>
+<h2>Create User Account</h2>
+<h2><img src="cid:Image_4.png" /></h2>
+<p>				          Figure 3: Create User Account Screen</p>
+<h4>Normal user</h4>
+<p>INSERT INTO Person</p>
+<p>VALUE</p>
+<p>(@TC_NO, @first_name, @last_name, @password, @email, @date_of_birth)</p>
+
+<p>INSERT INTO Users</p>
+<p>VALUE</p>
+<p>(@TC_NO)</p>
+<h2>User Login</h2>
+<p><img src="cid:Image_5.png" /></p>
+<p> 				      Figure 4: Login Screen</p>
+
+<h3>Login</h3>
+<p>	SELECT password</p>
+<p>	FROM Person</p>
+<p>	WHERE email = @email</p>
+
+<p>SELECT password</p>
+<p>	FROM Person</p>
+<p>	WHERE TC_NO = @TC_NO</p>
+<h4>Admin</h4>
+<p>SELECT email</p>
+<p>FROM Admin</p>
+<p>WHERE email = @email</p>
+
+<p>SELECT TC_NO</p>
+<p>FROM Admin</p>
+<p>WHERE TC_NO = @TC_NO</p>
+<h4>Editor</h4>
+<p>SELECT email</p>
+<p>FROM Editor</p>
+<p>WHERE email = @email</p>
+
+<p>SELECT TC_NO</p>
+<p>FROM Editor</p>
+<p>WHERE TC_NO = @TC_NO</p>
+<h4>Normal user</h4>
+<p>SELECT email</p>
+<p>FROM Users</p>
+<p>WHERE email = @email</p>
+
+<p>SELECT TC_NO</p>
+<p>FROM Admin</p>
+<p>WHERE TC_NO = @TC_NO</p>
+
+
+
+<h2>List Matches and Bets</h2>
+<p><img src="cid:Image_6.png" /></p>
+<p>					 Figure 5: Homepage Screen</p>
+
+<p><blockquote>*The editor suggests bet through the same gui but only without putting money on it.</blockquote></p>
+<p><blockquote>*On admin accounts the match ids are visible too and there will be an extra edit button which directs to admin edit screen.</blockquote></p>
+
+
+
+
+<h3>List Competitions</h3>
+<h4>List all matches with filter</h4>
+<h5>Team Name Filter</h5>
+<p>SELECT *</p>
+<p>FROM MatchHasSides NATURAL JOIN Team home USING home_side_id NATURAL JOIN Team away USING away_side_id</p>
+<p>WHERE home.name = @team_name OR away.name = @team_name</p>
+
+<h5>League Filter</h5>
+<p>SELECT *</p>
+<p>FROM MatchHasSides NATURAL JOIN Team home USING home_side_id NATURAL JOIN Team away USING away_side_id</p>
+<p>WHERE league_name = @league_name</p>
+<h5>Sport Type Filter </h5>
+<h6>Team Sport</h6>
+<p>SELECT *</p>
+<p>FROM MatchHasSides NATURAL JOIN Team home USING home_side_id NATURAL JOIN Team away USING away_side_id</p>
+<p>WHERE home.sport_type = @sport_type</p>
+<h6>Tennis</h6>
+<p>SELECT *</p>
+<p>FROM MatchHasSides NATURAL JOIN TennisPlayer home USING home_side_id NATURAL JOIN Team away USING away_side_id</p>
+<p>WHERE home.sport_type = @sport_type</p>
+<h6>F1Tournament</h6>
+<p>SELECT *</p>
+<p>FROM F1Tournament</p>
+<h5>Date Filter</h5>
+<p>SELECT *</p>
+<p>FROM Competition NATURAL JOIN MatchHasSides NATURAL JOIN TennisPlayer home USING home_side_id NATURAL JOIN Team away USING away_side_id</p>
+<p>WHERE competition_date = @competition_date</p>
+<h5>Bet Type Filter</h5>
+<p>SELECT *</p>
+<p>FROM Bet NATURAL JOIN MatchHasSides NATURAL JOIN TennisPlayer home USING home_side_id NATURAL JOIN Team away USING away_side_id</p>
+<p>WHERE bet_type = @bet_type</p>
+
+
+<h3>Add bet to betslip</h3>
+
+<p>INSERT INTO BetSlip</p>
+<p>VALUES</p>
+<p>(@slip_id, @money, @creation_date, @isShared, @success)</p>
+
+<p>DELETE FROM BetSlip</p>
+<p>WHERE slip_id = @slip_id</p>
+
+<p>INSERT INTO MakeBet</p>
+<p>VALUES</p>
+<p>(@slip_id, @competition_id, @bet_type, @MBN, @odd)</p>
+
+<p>INSERT INTO PlayBetSlip</p>
+<p>VALUES</p>
+<p>(@TC_NO, @slip_id)</p>
+
+<h3>Editor sharing betslips</h3>
+
+<p>INSERT INTO Prepare</p>
+<p>VALUES</p>
+<p>(@TC_NO, @slip_id)</p>
+
+<h2>SporToto Coupon</h2>
+<p><img src="cid:Image_7.png" /></p>
+<p>				 Figure 6: Sportoto Coupon Screen</p>
+<h3>List Sportoto Matches of the Week</h3>
+<p>SELECT *</p>
+<p>FROM SportotoMatch NATURAL JOIN Competition NATURAL JOIN Match NATURAL JOIN MatchHasSides</p>
+<p>WHERE date = @date</p>
+
+
+
+
+
+
+
+
+<h2>SporToto Coupon Results </h2>
+<p><img src="cid:Image_8.png" /></p>
+<p>			 Figure 7: Sportoto Coupon Results Screen</p>
+
+<h3>List Sportoto Results Weekly</h3>
+<p>SELECT *</p>
+<p>FROM SportotoMatch NATURAL JOIN Competition NATURAL JOIN Match NATURAL JOIN MatchHasSides</p>
+<p>WHERE date = @date</p>
+
+
+
+
+
+
+
+<h2>Show Coupons</h2>
+<p><img src="cid:Image_9.png" /></p>
+
+<p>				 Figure 8: Social Coupons Screen</p>
+
+<h3>List Friends’ Coupons</h3>
+
+<p>SELECT *</p>
+<p>FROM AddFriend af JOIN  PlayBetSlip pbs ON af.friend_TC_NO = pbs.TC_NO NATURAL JOIN BetSlip</p>
+<p>WHERE af.owner_TC_NO = @TC_NO</p>
+
+
+
+
+
+<h2>Show Coupons</h2>
+<p><img src="cid:Image_10.png" /></p>
+<p>			 Figure 9: Social Coupon- Editor Sharings Screen</p>
+
+<h3>List Editors’ Coupons</h3>
+
+<p>SELECT *</p>
+<p>FROM Follow fl JOIN  PlayBetSlip pbs ON fl.editor_TC_NO = pbs.TC_NO NATURAL JOIN BetSlip</p>
+<p>WHERE af.user_TC_NO = @TC_NO</p>
+
+
+
+
+
+<h2>Show Account</h2>
+<p><img src="cid:Image_11.png" /></p>
+<p>			 Figure 10: User Profile - Wallet Screen </p>
+
+<h3>Add credit to wallet</h3>
+<p>UPDATE Users</p>
+<p>SET wallet = wallet + @value</p>
+<p>WHERE TC_NO = @TC_NO</p>
+
+<h3>Pay credit from wallet</h3>
+<p>UPDATE Users</p>
+<p>SET wallet = wallet - @value</p>
+<p>WHERE TC_NO = @TC_NO AND wallet >= @value</p>
+
+<h2>List Followers</h2>
+<p><img src="cid:Image_12.png" /></p>
+<p>		               Figure 11: User Profile - Followers Screen </p>
+
+<p>SELECT  owner_TC_NO</p>
+<p>FROM AddFriend</p>
+<p>WHERE friend_TC_NO = @TC_NO</p>
+<p></p>
+<h2>List Following</h2>
+<p><img src="cid:Image_13.png" /></p>
+<p>				  Figure 12: User Profile - Following Screen </p>
+
+<p>(SELECT friend_TC_NO AS following FROM AddFriend WHERE owner_TC_NO = @TC_NO) UNION </p>
+<p>(SELECT editor_TC_NO AS following FROM Follow WHERE user_TC_NO =  @TC_NO)</p>
+
+
+<h2>List User’s Coupons</h2>
+<p><img src="cid:Image_14.png" /></p>
+<p>			               Figure 13: User Profile - My Coupons Screen </p>
+
+
+<p>SELECT *</p>
+<p>FROM PlayBetSlip NATURAL JOIN BetSlip</p>
+<p>WHERE TC_NO = @TC_NO</p>
+
+
+
+
+
+<h2>Follow Others</h2>
+
+<p><img src="cid:Image_15.png" /></p>
+<p>				Figure 14: User Profile - Follow Others Screen </p>
+<h3>Add friend</h3>
+<p>	INSERT INTO AddFriend</p>
+<p>	(@owner_TC_NO, friend_TC_NO)</p>
+<p>	</p>
+<p>	DELETE FROM AddFriend</p>
+<p>	WHERE owner_TC_NO = @owner_TC_NO AND friend_TC_NO = @friend_TC_NO</p>
+
+
+<p>*Account gui through editor account does not have my wallet, following and follow others tabs</p>
+
+<h2>Coupon Details</h2>
+<p><img src="cid:Image_16.png" /></p>
+<p>					Figure 15: User Profile - Coupon Details Screen </p>
+
+
+
+<h3>Make Comment </h3>
+<h4>Make comment on bet slip</h4>
+<p>INSERT INTO Comment</p>
+<p>VALUES</p>
+<p>(@comment_id, @content, @comment_date, @comment_time)</p>
+
+<p>INSERT INTO MakeComment</p>
+<p>VALUES</p>
+<p>(@TC_NO, @slip_id, @comment_id)</p>
+
+<p>DELETE FROM Comment</p>
+<p>		WHERE comment_id = @comment_id</p>
+<h4>Make comment on comment</h4>
+<p>INSERT INTO Comment</p>
+<p>VALUES</p>
+<p>(@comment_id, @content, @comment_date, @comment_time)</p>
+
+<p>INSERT INTO CommentOnComment</p>
+<p>VALUES</p>
+<p>(@TC_NO, @owner_comment_id, @sub_comment_id)</p>
+
+<p>DELETE FROM Comment</p>
+<p>WHERE sub_comment_id = @comment_id</p>
+
+<h3>Like on betslip</h3>
+<p>INSERT INTO LikeBetSlip</p>
+<p>VALUES</p>
+<p>(@TC_NO, @slip_id)</p>
+
+<p>DELETE FROM LikeComment</p>
+<p>	WHERE TC_NO = @TC_NO AND slip_id = @slip_id</p>
+
+
+<h3>Like on comment</h3>
+<p>INSERT INTO LikeComment</p>
+<p>VALUES</p>
+<p>(@TC_NO, @comment_id)</p>
+
+<p>DELETE FROM LikeComment</p>
+<p>	WHERE TC_NO = @TC_NO AND comment_id = @comment_id</p>
+<h2>Admin Manage</h2>
+<p><img src="cid:Image_17.png" /></p>
+<p>				Figure 16: Admin Manage Bet Screen </p>
+
+<h3>Admin edit match</h3>
+<p>INSERT INTO Competition</p>
+<p>VALUES</p>
+<p>(@competition_id, @competition_date)</p>
+
+<p>		DELETE FROM Competition</p>
+<p>		WHERE competition_id = @competition_id</p>
+
+<h3>Enter match</h3>
+<p>INSERT INTO Match</p>
+<p>VALUES</p>
+<p>(@competition_id, @match_time, @home_score, @away_score, </p>
+<p>@league_name)</p>
+
+<p>INSERT INTO MatchHasSides</p>
+<p>VALUES</p>
+<p>(@competition_id, @home_side_id, @away_side_id)</p>
+
+
+<h3>Enter  F1 Tournament</h3>
+<p>INSERT INTO Competition</p>
+<p>VALUES</p>
+<p>(@competition_id, @competition_date)</p>
+
+<p>INSERT INTO F1Tournament</p>
+<p>VALUES</p>
+<p>(@competition_id, @tournament_name, @winner_driver, @winner_team)</p>
+
+
+<h3>Admin add-delete bets</h3>
+<p>INSERT INTO Bet</p>
+<p>	VALUES</p>
+<p>(@competition_id,  @bet_type, @MBN, @odd)</p>
+
+<p>DELETE FROM Bet</p>
+<p>WHERE competition_id = @competition_id AND bet_type = @bet_type</p>
+<p><img src="cid:Image_18.png" /></p>
+<p>                                               Figure 17: Admin Manage Sportoto Match  Screen </p>
+<h3>Admin Manages Sportoto Match</h3>
+<p>INSERT INTO SportotoMatch</p>
+<p>VALUES</p>
+<p>(@competition_id)</p>
+
+<p>INSERT INTO AdminManagesSportotoMatch</p>
+<p>VALUES</p>
+<p>(@TC_NO, @competition_id, @manage_date, @manage_time)</p>
+
+<p>DELETE FROM SportotoMatch</p>
+<p>WHERE competition_id = @competition_id</p>
+
+<p>INSERT INTO SportotoBets</p>
+<p>VALUES</p>
+<p>(@TC_NO, @competition_id)</p>
