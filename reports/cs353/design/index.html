@@ -581,7 +581,7 @@
 <h1></h1>
 <h1>User Interface Design and Corresponding SQL Statements</h1>
 <h2>Create Admin Account</h2>
-<p><img src="cid:Image_2.png" /></p>
+<p><img src="Image_2.png" /></p>
 <p>			   Figure 1: Create Admin Account Screen</p>
 <p>                                            </p>
 <h3>Sign up</h3>
@@ -594,7 +594,7 @@
 <p>(@TC_NO)</p>
 <h2>Create Editor Account</h2>
 
-<p><img src="cid:Image_3.png" /></p>
+<p><img src="Image_3.png" /></p>
 <p>				Figure 2: Create Editor Account Screen</p>
 <h4>Editor</h4>
 <p>INSERT INTO Person</p>
@@ -605,7 +605,7 @@
 <p>VALUE</p>
 <p>(@TC_NO)</p>
 <h2>Create User Account</h2>
-<h2><img src="cid:Image_4.png" /></h2>
+<h2><img src="Image_4.png" /></h2>
 <p>				          Figure 3: Create User Account Screen</p>
 <h4>Normal user</h4>
 <p>INSERT INTO Person</p>
@@ -616,7 +616,7 @@
 <p>VALUE</p>
 <p>(@TC_NO)</p>
 <h2>User Login</h2>
-<p><img src="cid:Image_5.png" /></p>
+<p><img src="Image_5.png" /></p>
 <p> 				      Figure 4: Login Screen</p>
 
 <h3>Login</h3>
@@ -655,7 +655,7 @@
 
 
 <h2>List Matches and Bets</h2>
-<p><img src="cid:Image_6.png" /></p>
+<p><img src="Image_6.png" /></p>
 <p>					 Figure 5: Homepage Screen</p>
 
 <p><blockquote>*The editor suggests bet through the same gui but only without putting money on it.</blockquote></p>
@@ -721,7 +721,7 @@
 <p>(@TC_NO, @slip_id)</p>
 
 <h2>SporToto Coupon</h2>
-<p><img src="cid:Image_7.png" /></p>
+<p><img src="Image_7.png" /></p>
 <p>				 Figure 6: Sportoto Coupon Screen</p>
 <h3>List Sportoto Matches of the Week</h3>
 <p>SELECT *</p>
@@ -736,7 +736,7 @@
 
 
 <h2>SporToto Coupon Results </h2>
-<p><img src="cid:Image_8.png" /></p>
+<p><img src="Image_8.png" /></p>
 <p>			 Figure 7: Sportoto Coupon Results Screen</p>
 
 <h3>List Sportoto Results Weekly</h3>
@@ -751,7 +751,7 @@
 
 
 <h2>Show Coupons</h2>
-<p><img src="cid:Image_9.png" /></p>
+<p><img src="Image_9.png" /></p>
 
 <p>				 Figure 8: Social Coupons Screen</p>
 
@@ -766,7 +766,7 @@
 
 
 <h2>Show Coupons</h2>
-<p><img src="cid:Image_10.png" /></p>
+<p><img src="Image_10.png" /></p>
 <p>			 Figure 9: Social Coupon- Editor Sharings Screen</p>
 
 <h3>List Editors’ Coupons</h3>
@@ -780,7 +780,7 @@
 
 
 <h2>Show Account</h2>
-<p><img src="cid:Image_11.png" /></p>
+<p><img src="Image_11.png" /></p>
 <p>			 Figure 10: User Profile - Wallet Screen </p>
 
 <h3>Add credit to wallet</h3>
@@ -794,7 +794,7 @@
 <p>WHERE TC_NO = @TC_NO AND wallet >= @value</p>
 
 <h2>List Followers</h2>
-<p><img src="cid:Image_12.png" /></p>
+<p><img src="Image_12.png" /></p>
 <p>		               Figure 11: User Profile - Followers Screen </p>
 
 <p>SELECT  owner_TC_NO</p>
@@ -802,7 +802,7 @@
 <p>WHERE friend_TC_NO = @TC_NO</p>
 <p></p>
 <h2>List Following</h2>
-<p><img src="cid:Image_13.png" /></p>
+<p><img src="Image_13.png" /></p>
 <p>				  Figure 12: User Profile - Following Screen </p>
 
 <p>(SELECT friend_TC_NO AS following FROM AddFriend WHERE owner_TC_NO = @TC_NO) UNION </p>
@@ -810,7 +810,7 @@
 
 
 <h2>List User’s Coupons</h2>
-<p><img src="cid:Image_14.png" /></p>
+<p><img src="Image_14.png" /></p>
 <p>			               Figure 13: User Profile - My Coupons Screen </p>
 
 
@@ -824,7 +824,7 @@
 
 <h2>Follow Others</h2>
 
-<p><img src="cid:Image_15.png" /></p>
+<p><img src="Image_15.png" /></p>
 <p>				Figure 14: User Profile - Follow Others Screen </p>
 <h3>Add friend</h3>
 <p>	INSERT INTO AddFriend</p>
@@ -837,7 +837,7 @@
 <p>*Account gui through editor account does not have my wallet, following and follow others tabs</p>
 
 <h2>Coupon Details</h2>
-<p><img src="cid:Image_16.png" /></p>
+<p><img src="Image_16.png" /></p>
 <p>					Figure 15: User Profile - Coupon Details Screen </p>
 
 
@@ -883,7 +883,7 @@
 <p>DELETE FROM LikeComment</p>
 <p>	WHERE TC_NO = @TC_NO AND comment_id = @comment_id</p>
 <h2>Admin Manage</h2>
-<p><img src="cid:Image_17.png" /></p>
+<p><img src="Image_17.png" /></p>
 <p>				Figure 16: Admin Manage Bet Screen </p>
 
 <h3>Admin edit match</h3>
@@ -922,7 +922,7 @@
 
 <p>DELETE FROM Bet</p>
 <p>WHERE competition_id = @competition_id AND bet_type = @bet_type</p>
-<p><img src="cid:Image_18.png" /></p>
+<p><img src="Image_18.png" /></p>
 <p>                                               Figure 17: Admin Manage Sportoto Match  Screen </p>
 <h3>Admin Manages Sportoto Match</h3>
 <p>INSERT INTO SportotoMatch</p>
