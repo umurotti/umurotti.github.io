@@ -1,0 +1,10 @@
+1- Generalizationlardaki total information kaldırdı.
+2- Bet entity odd ve MBN key'den çıkardık. (Bir match aynı bet odd typeımda farklı oranlara sahip olabiliyordu ve bu bir sorundu)
+3- Wrong relation çözemedik. (Make bet)
+4- like comment total participitation kaldırıldı
+5- like comment cardinality (many-to-many oldu)
+6- Aggregation sorulacak.
+7- match-comment total participiatation kaldırıldı.
+8- 
+9- 
+10- 
