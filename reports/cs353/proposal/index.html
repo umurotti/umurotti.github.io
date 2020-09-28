@@ -1,0 +1,187 @@
+<p>&nbsp;</p>
+<!-- #######  YAY, I AM THE SOURCE EDITOR! #########-->
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="font-weight: 400;"><img src="286b09ecc32d3c9c2e68e62970c69092.jpeg" alt="logo" width="250" height="250" /></span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="font-weight: 400;">CS353 GROUP 03</span></p>
+<p style="text-align: center;"><span style="font-weight: 400;">Social Betting Platform</span></p>
+<p style="text-align: center;"><span style="font-weight: 400;">&ldquo;Tekmactanyattik&rdquo;</span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="font-weight: 400;">Project Proposal</span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="font-weight: 400;">Group Members</span></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="font-weight: 400;">Elif Kasapoğlu</span> <span style="font-weight: 400;">21601295</span></p>
+<p style="text-align: center;"><span style="font-weight: 400;">İrem Kırmacı</span> <span style="font-weight: 400;">21501389</span></p>
+<p style="text-align: center;"><span style="font-weight: 400;">&nbsp;&Ouml;mer Faruk K&uuml;rkl&uuml;</span> <span style="font-weight: 400;">21703424</span></p>
+<p style="text-align: center;"><span style="font-weight: 400;">Umur G&ouml;ğebakan</span> <span style="font-weight: 400;">21702705</span></p>
+<h1 style="color: #5e9ca0;">&nbsp;</h1>
+<p><a href="#introduction">1. Introduction</a></p>
+<p><a href="#project_description">2. Project Description</a></p>
+<p><a href="#requirements">3. Requirements</a></p>
+<p style="padding-left: 30px;"><a href="#functional_requirements">3.1 Functional Requirements</a></p>
+<p style="padding-left: 60px;"><a href="#account_management">3.1.1 Account Management</a></p>
+<p style="padding-left: 90px;"><a href="#admin">3.1.1.1 Admin</a></p>
+<p style="padding-left: 90px;"><a href="#editor">3.1.1.2 Editor</a></p>
+<p style="padding-left: 90px;"><a href="#user">3.1.1.3 User</a></p>
+<p style="padding-left: 60px;"><a href="#wallet">3.1.2 Wallet</a></p>
+<p style="padding-left: 60px;"><a href="#comment">3.1.3 Comment</a></p>
+<p style="padding-left: 60px;"><a href="#bet_slip">3.1.4 Bet Slip</a></p>
+<p style="padding-left: 60px;"><a href="#bet">3.1.5 Bet</a></p>
+<p style="padding-left: 60px;"><a href="#match">3.1.6 Match</a></p>
+<p style="padding-left: 60px;"><a href="#sportoto_match">3.1.7 Sportoto Match</a></p>
+<p style="padding-left: 60px;"><a href="#competition">3.1.8 Competition</a></p>
+<p style="padding-left: 60px;"><a href="#side">3.1.9 Side</a></p>
+<p style="padding-left: 30px;"><a href="#nonfunctional_requirements">3.2 Nonfunctional Requirements</a></p>
+<p style="padding-left: 60px;"><a href="#performance">3.2.1 Performance</a></p>
+<p style="padding-left: 60px;"><a href="#concurrency">3.2.2 Concurrency</a></p>
+<p style="padding-left: 60px;"><a href="#security">3.2.3 Security</a></p>
+<p style="padding-left: 60px;"><a href="#capacity">3.2.4 Capacity</a></p>
+<p style="padding-left: 60px;"><a href="#reliability">3.2.5 Reliability</a></p>
+<p style="padding-left: 60px;"><a href="#usability">3.2.6 Usability</a></p>
+<p style="padding-left: 60px;"><a href="#portability">3.2.7 Portability</a></p>
+<p><a href="#limitations">4 Limitations</a></p>
+<p><a href="#er_diagram">5 ER Diagram</a></p>
+<p><a href="#references">References</a></p>
+<h1 style="color: #5e9ca0;">&nbsp;</h1>
+<h1><strong><a id="introduction"></a>1. Introduction</strong></h1>
+<p style="text-align: justify;"><span style="font-weight: 400;">Tekmactanyattik is a social betting platform with social features. Users are able to make bets, share their bet slips, comments on matches and comment and like on other users share. In this proposal aim is to explain Tekmactanyattik&rsquo;s description, functional and non-functional requirements, limitations and an E-R diagram of Tekmactanyattik. The database management system of Tekmactanyattik will be designed according to the given E-R diagram. Detailed explanation of the project will be given in Project Description.</span></p>
+<h1><a id="project_description"></a>2. Project Description</h1>
+<p style="text-align: justify;"><span style="font-weight: 400;">As mentioned in the Introduction, Tekmactanyattik is a social betting platform with social features.&nbsp;</span></p>
+<p style="text-align: justify;">&nbsp;</p>
+<p style="text-align: justify;"><span style="font-weight: 400;">Since it is a betting platform, matches have different types of bets which have their own odd and minimum betting number (MBN). Each bet is unique and its winning conditions are different from others. An user can create bet slips with these bets. For a bet slip to be valid, the number of bets in that slip must be equal to or greater than the maximum of the MBN of bets in that bet slip. Once the bet slip is created the user can add bets to it or remove bets from it. The user can also remove the betslip completely. Users can then put money on the bet slip from his or her wallet. The total odd of the bet slip is calculated by summing up all the odds of each bet in that bet slip. Each bet slip has its creation time and tracks whenever a bet is added.</span></p>
+<p style="text-align: justify;">&nbsp;</p>
+<p style="text-align: justify;"><span style="font-weight: 400;">Bets have two different types called competition: Match bet and Formula 1 Tournament. Only one bet can be played for each match. Match bets include sports: Football, Basketball and Tennis. Each match has teams or players playing them and has a league. Teams are for team sports and players are for individual sports, for this project teams are football teams, basketball teams and players are tennis players. Leagues are unique for each sport like Euroleague for basketball, Wimbledon for tennis and Super Lig for football. Each F1 Tournament has two types of bets: team bet and individual driver bet. There are also Spor Toto matches which are decided by admins.</span></p>
+<p style="text-align: justify;">&nbsp;</p>
+<p style="text-align: justify;"><span style="font-weight: 400;">In Tekmactanyattik users are able to share their bet slips and comment on or like other users shared bet slips. Users can also comment on matches and other comments or like a comment. Each user can add other users as friends and see their shared bet slips and activities on their timeline. Users can follow editors and see their prepared bet slips.&nbsp;</span></p>
+<p style="text-align: justify;"><span style="font-weight: 400;">Tekmactanyattik has 3 different person types, editors, users and admins. Editors are able to prepare bet slips. Admins can change odds of bets, or remove a bet completely. Admins also create Spor Toto matches. Users are able to make bets and create bet slips, make Spor Toto coupons, make comments, like bet slips and comments, follow editors and add other users as friends.</span></p>
+<p style="text-align: justify;">&nbsp;</p>
+<p style="text-align: justify;"><span style="font-weight: 400;">Tekmactanyattik will be supported by a database management system since all above described entities should be kept in a storage and be remembered. For example teams and odds of each bet should be remembered to verify if the user won or lost. A detailed description of how the database will be designed in the form of an E-R diagram is in section 5.</span></p>
+<h1><a id="requirements"></a>3. Requirements</h1>
+<p>In this section, first functional requirements then non-functional requirements will be explained.</p>
+<h2><a id="functional_requirements"></a>3.1 Functional Requirements</h2>
+<h3><a id="account_management"></a>3.1.1 Account Management</h3>
+<ul>
+<li>Each account will require a verification process.</li>
+<li>Users will be able to surf on the website but placing bets and all other functionalities will require a sign up / login process.</li>
+</ul>
+<h3 style="padding-left: 30px;"><a id="admin"></a>3.1.1.1 Admin</h3>
+<ul>
+<li>Admins can create, remove and edit Bets. The odds for each Bet are entered by admin.</li>
+<li>Admins can also create Sportoto Bets.</li>
+</ul>
+<h3 style="padding-left: 30px;"><a id="editor"></a>3.1.1.2 Editor</h3>
+<ul>
+<li>
+<p>Editors can create and share bet slips.</p>
+</li>
+</ul>
+<h3 style="padding-left: 30px;"><a id="user"></a>3.1.1.3 User</h3>
+<ul>
+<li>Users can follow editors.</li>
+<li>Users can add another user as a friend.</li>
+<li>Users can make a Sportoto Coupon which consists of Sportoto Bets on each row.</li>
+<li>Users can make a Bet Slip which consists of Bets, chosen by the user.</li>
+<li>Users can share their Bet Slips.</li>
+<li>Users can make comments on Bet Slips shared by users. Users can also make comments on already made comments.&nbsp;</li>
+<li>Users can like a comment or like a Bet Slip shared by a user.</li>
+<li>Users can make comments on matches.</li>
+</ul>
+<h3><a id="wallet"></a>3.1.2 Wallet</h3>
+<ul>
+<li>Each account will have a wallet that will store the money of each user and will be involved in each transaction.</li>
+</ul>
+<h3><a id="comment"></a>3.1.3 Comment</h3>
+<ul>
+<li>A comment can be written by a user. It consists of a rating of the coupon and the written comment section.</li>
+</ul>
+<h3><a id="bet_slip"></a>3.1.4 Bet Slip</h3>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Each Bet Slip consists of multiple Bets which are chosen by the User. The properties of each Bet is determined by Admins. The user enters the amount of money to be put and completes the process.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Each Bet has a certain MBN (Minimum Bet Number) entered by admins, which has to be satisfied in order to successfully create a Bet Slip.</span></li>
+</ul>
+<h3><a id="bet"></a>3.1.5 Bet</h3>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Each Bet has its own odd, type and MBN (Minimum Bet Number).</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">These Bets&rsquo; odds are managed by admins and stored with detailed date and time information.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Bets are made by users and they construct a Bet Slip. A user must select a Bet to be added to Bet Slip.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">MBN attribute on each Bet identifies at least how many Bets should exist in a Bet Slip for a user to successfully play the Bet Slip.</span></li>
+</ul>
+<h3><a id="match"></a>3.1.6 Match</h3>
+<ul>
+<li>Each match will be entered into the system by admins. Their score updates and Bet odds will also be determined by admins.</li>
+</ul>
+<h3><a id="sportoto_match"></a>3.1.7 <strong>Sportoto Match</strong></h3>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Only admins can manage a Sportoto Match. Date and Time information of all management issues on a Sportoto Match will be stored.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">User makes Bet on Sportoto Match with its content, fold and time attributes stored.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">When a user bets on a Sportoto Match he sets to content to appropriate value to indicate his choice.</span></li>
+</ul>
+<h3><a id="competition"></a>3.1.8 <strong>Competition</strong></h3>
+<ul>
+<li><span style="font-weight: 400;">Each competition can either be a Match or a F1-Tournament. These competitions' date of start will be entered by admins and will be stored in the system.</span></li>
+</ul>
+<h3><a id="side"></a>3.1.9 <strong>Side</strong></h3>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Side is either a Team or a Tennis player.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Each Match has a home and an away team.</span></li>
+</ul>
+<h2><a id="nonfunctional_requirements"></a>3.2 Nonfunctional Requirements</h2>
+<h3><a id="performance"></a>3.2.1 Performance</h3>
+<ul>
+<li>Time required for all responses should not exceed 2 seconds.</li>
+<li>Queries should not exceed 5 seconds to return the result.</li>
+</ul>
+<h3><a id="concurrency"></a>3.2.2 Concurrency</h3>
+<ul>
+<li>User requests should be handled concurrently, and one user should not wait another&rsquo;s to end.</li>
+<li>Possible concurrent transactions should be handled and the state of the user should always be stable and trackable.</li>
+</ul>
+<h3><a id="security"></a>3.2.3 Security</h3>
+<ul>
+<li>Each user should be verified by their email.</li>
+<li>The personal information of the user should be protected against possible leaks.</li>
+<li>Only editors and already signed up users can create Bets.</li>
+<li>Only admins have access to manage bets and their odds.</li>
+</ul>
+<h3><a id="capacity"></a>3.2.4 Capacity</h3>
+<ul>
+<li>The system should be large enough to store at least 1000 users.</li>
+</ul>
+<h3><a id="reliability"></a>3.2.5 Reliability</h3>
+<ul>
+<li>There is also a need for error checking and validation function to ensure that only valid data types are stored in a defined field.</li>
+<li>If a crash occurs, the system should still be in a stable and precise state.</li>
+<li>When a user successfully creates a bet slip, its properties should be stored in the system according to the values when the slip has been created. Changing properties of bets by admins should not affect the existing bet slips.</li>
+</ul>
+<h3><a id="usability"></a>3.2.6 Usability</h3>
+<ul>
+<li>Labels should represent their functionalities explicitly.</li>
+<li>An average user who knows the rules of betting can understand the system.</li>
+<li>A user should be able to make a bet in just one minute.</li>
+<li>When an error occurs, the user should be informed with an explicit message showing what went wrong.</li>
+</ul>
+<h3><a id="portability"></a>3.2.7 Portability</h3>
+<ul>
+<li>System should be portable on different OS and devices since it is a web application.</li>
+</ul>
+<h1><a id="limitations"></a>4. Limitations</h1>
+<ul>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Each bet is created or managed by only admins. Only admins can create a bet and only then the users are able to make that bet.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Only one bet can be made for each match.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">For a bet slip to be valid, the number of bets in that slip must be equal to or greater than the maximum of the MBN of bets in that bet slip.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">A user can only make 30 bets maximum in one bet slip</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">A user can only bet between 3-3000 Turkish Lira for one bet slip</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">A user can only add 30 other users as friends.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">A user can only create one bet slip at a time, to create other bet slips he or she either must delete or finish that bet slip by putting money on it.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">For each Spor Toto coupon maximum price of the coupon cannot exceed 3000 TL.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">The maximum amount an user can win from a bet slip can not exceed 500000 TL.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">A user can not make the bet if the match of the bet has already started or finished. No live betting.</span></li>
+</ul>
+<h1><a id="er_diagram"></a>5. ER Diagram</h1>
+<p style="text-align: center;"><img src="er.jpeg" alt="er diagram" width="1600" height="1208" /></p>
+<p style="text-align: center;"><em><span style="font-weight: 400;">Figure 1: </span></em><span style="font-weight: 400;">Entity Relationship Diagram for Tekmactanyattik. [1]</span></p>
+<h1 style="text-align: left;"><a id="references"></a>References</h1>
+<p>[1] A. Silberschatz, H. F. Korth, and S. Sudarshan, Database system concepts, 6th ed. New York: McGraw-Hill, 2010. [Online]. Available: http://www.db-book.com/</p>
