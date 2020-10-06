@@ -37,13 +37,10 @@
 				<!-- Section -->
 					<section id="first">
 						<header>
-							<h2>About Me</h2>
+							<h2>Magna sed nullam nisl adipiscing</h2>
 						</header>
 						<div class="content">
-							<p><strong>Umur Gogebakan, BSc. Computer Science;</strong> Senior student at Bilkent University, currently taking essential classes to build a strong basis for the understanding of
-								Computer Engineering and software development. Eager to grasp the real science behind
-								accepted programming concepts and modern paradigms such as Machine Learning and Artificial
-								Intelligence. Ambitious, organized, curious, entrepreneurial, problem solver and team player. </p>
+							<p><strong>Lorem ipsum dolor</strong> sit amet consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor amet fermentum. Nullam venenatis erat id vehicula ultrices sed ultricies condimentum. Magna sed etiam consequat, et lorem adipiscing sed nulla. Volutpat nisl et tempus et dolor libero, feugiat magna tempus, sed et lorem adipiscing.</p>
 							<span class="image main"><img src="images/myPic02.png" alt="" /></span>
 						</div>
 					</section>
@@ -54,11 +51,7 @@
 						</header>
 						
 						<div class="content">
-						<!-- Acoustic Novelty Detection -->
-                                                <h2><a href="https://github.com/umurotti/AudioNovelty" target="_blank">Acoustic Novelty Detection</a> </h2>
-                                                        <p><strong> Acoustic Novelty Detection</strong> Tenforflow implementation of the Acoustic Novelty Detection using Recurent Neural Networks with Stochastic Layers</p>
-                                                        <span class="image main"><img src="" alt="" /></span>
-
+						
 						<!-- 7 wonders -->
 						<h2><a href="https://github.com/umurotti/SevenWonders-Multiplayer" target="_blank">7 Wonders Multiplayer</a> </h2>
 							<p><strong> <a href="https://www.rprod.com/?page=description-22" target="_blank">7 Wonders</a></strong> is a board game created by Antoine Bauza in 2010 and originally published by Repos Production in Belgium. As a member of team of five, developed a multiplayer version of board game 7 Wonders with added features on Java. Used AWS EC-2 instance, Swagger.io, JAX-RS API embedded into client/server architecture along with Strategy and Template design patterns. Standard RESTful service structure is used.</p>
@@ -66,8 +59,9 @@
 						
 						<!-- SpotifySpeech -->
 						<h2> <a href="https://github.com/umurotti/SpotifySpeech" target="_blank">Spotify Speech</a> </h2>
-							<p><strong>Spotify Speech</strong> Search items on Spotify by voice.</p>
+							<p><strong>Spotify Speech</strong> sit amet consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor amet fermentum. Nullam venenatis erat id vehicula ultrices sed ultricies condimentum. Magna sed etiam consequat, et lorem adipiscing sed nulla. Volutpat nisl et tempus et dolor libero, feugiat magna tempus, sed et lorem adipiscing.</p>
 							<span class="image main"><img src="images/myPic02.jpg" alt="" /></span>
+						
 						
 						<!-- Surface Reconstruction -->
 						<h2> <a href="https://github.com/umurotti/Surface-Reconstruction" target="_blank">Surface Reconstruction</a> </h2>
